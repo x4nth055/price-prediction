@@ -18,7 +18,8 @@ class PricePrediction:
         :param ticker_name (str): ticker name, e.g. aapl, nflx, etc.
         :param n_steps (int): sequence length used to predict, default is 60
         :param price_column (str): the name of column that contains price predicted, default is 'adjclose'
-        :param feature_columns (list): a list of feature column names used to train the model, default is ['adjclose']
+        :param feature_columns (list): a list of feature column names used to train the model, 
+            default is ['adjclose', 'volume', 'open', 'high', 'low']
         :param target_column (str): target column name, default is 'future'
         :param lookup_step (int): the future lookup step to predict, default is 1 (e.g. next day)
         :param shuffle (bool): whether to shuffle the dataset, default is True
@@ -33,7 +34,7 @@ class PricePrediction:
         Training parameters
         :param batch_size (int): number of samples per gradient update, default is 64
         :param epochs (int): number of epochs, default is 100
-        :param optimizer (str, keras.optimizers.Optimizer): optimizer used to train, default is 'rmsprop'
+        :param optimizer (str, keras.optimizers.Optimizer): optimizer used to train, default is 'adam'
         :param loss (str, function): loss function used to minimize during training,
             default is 'mae'
         :param test_size (float): test size ratio from 0 to 1, default is 0.15
@@ -41,7 +42,7 @@ class PricePrediction:
         self.ticker_name = ticker_name
         self.n_steps = kwargs.get("n_steps", 60)
         self.price_column = kwargs.get("price_column", 'adjclose')
-        self.feature_columns = kwargs.get("feature_columns", ['adjclose'])
+        self.feature_columns = kwargs.get("feature_columns", ['adjclose', 'volume', 'open', 'high', 'low'])
         self.target_column = kwargs.get("target_column", "future")
         self.lookup_step = kwargs.get("lookup_step", 1)
         self.shuffle = kwargs.get("shuffle", True)
@@ -54,7 +55,7 @@ class PricePrediction:
 
         self.batch_size = kwargs.get("batch_size", 64)
         self.epochs = kwargs.get("epochs", 100)
-        self.optimizer = kwargs.get("optimizer", "rmsprop")
+        self.optimizer = kwargs.get("optimizer", "adam")
         self.loss = kwargs.get("loss", "mae")
         self.test_size = kwargs.get("test_size", 0.15)
 

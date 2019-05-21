@@ -18,7 +18,7 @@ from price_prediction import PricePrediction
 
 ticker = "BTC-USD"
 
-p = PricePrediction("BTC-USD", price_column='adjclose', feature_columns=['adjclose', 'volume', 'open', 'high', 'low'],
+p = PricePrediction("BTC-USD", feature_columns=['adjclose', 'volume', 'open', 'high', 'low'],
                     epochs=1000, cell=LSTM, optimizer="adam", n_layers=3, units=256, 
                     loss="mae", shuffle=False)
 p.train()

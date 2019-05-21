@@ -28,9 +28,7 @@ from price_prediction import PricePrediction
 ticker = "BTC-USD"
 
 # init class, choose as much parameters as you want, check its docstring
-p = PricePrediction("BTC-USD", price_column='adjclose', feature_columns=['adjclose', 'volume', 'open', 'high', 'low'],
-                    epochs=1000, cell=LSTM, optimizer="adam", n_layers=3, units=256, 
-                    loss="mae", shuffle=False)
+p = PricePrediction("BTC-USD", epochs=1000, cell=LSTM, n_layers=3, units=256, loss="mae", optimizer="adam")
 
 # train the model if not trained yet
 p.train()
